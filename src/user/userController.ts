@@ -19,7 +19,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 
   //password  hash
-  const hashedPassword = bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   //Process
   //Response
