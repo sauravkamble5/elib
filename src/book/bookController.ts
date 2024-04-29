@@ -19,20 +19,20 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
     fileName
   );
 
-  const uploadResult = await cloudinary.uploader.upload(filePath, {
-    filename_override: fileName,
-    folder: "book-covers",
-    format: coverImageType,
-  });
-
-  const bookFileName = files.file[0].filename;
-  const bookFilePath = path.resolve(
-    __dirname,
-    "../../public/data/uploads",
-    bookFileName
-  );
-
   try {
+    const uploadResult = await cloudinary.uploader.upload(filePath, {
+      filename_override: fileName,
+      folder: "book-covers",
+      format: coverImageType,
+    });
+
+    const bookFileName = files.file[0].filename;
+    const bookFilePath = path.resolve(
+      __dirname,
+      "../../public/data/uploads",
+      bookFileName
+    );
+
     const bookFileUploadResult = await cloudinary.uploader.upload(
       bookFilePath,
       {
